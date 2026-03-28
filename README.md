@@ -113,7 +113,7 @@ Example: A model can be 90% accurate but fail one class completely
 
 ---
 
-## ⚙️ F. Model Comparison & Improvement
+##  F. Model Comparison & Improvement
 
 ### 14. Recommended model
 
@@ -137,7 +137,7 @@ Example: A model can be 90% accurate but fail one class completely
 
 ---
 
-## 🌍 G. Real-World Application
+##  G. Real-World Application
 
 ### 16. Applications
 - Medical image classification
