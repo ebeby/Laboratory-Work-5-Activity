@@ -6,165 +6,153 @@
 
 ##  A. Model Performance
 
-### 1. Which pre-trained model achieved the highest accuracy? Why?
-Based on the setup, **EfficientNetB3** or **ResNet101** achieved the highest accuracy.
+1. Which pre-trained model achieved the highest accuracy? Why?
 
-**Why:**
-- EfficientNetB3 uses compound scaling for better feature extraction.
-- ResNet101 is deeper and captures more complex patterns.
-- Both outperform lighter models in most image classification tasks.
+Based on the graphs and comparison tables, EfficientNetB3 achieved the highest overall accuracy and F1-score among the tested models.
 
----
+Why:
 
-### 2. Which model had the lowest performance? What could be the reason?
-**NASNetMobile** or **MobileNetV2** had the lowest performance.
+It extracted image features more effectively.
+The model focused better on the flower object in the Grad-CAM visualization.
+It produced more balanced Precision, Recall, and F1-score results compared to lighter models.
+2. Which model had the lowest performance? What could be the reason?
 
-**Reasons:**
-- Designed for mobile/low computation, not maximum accuracy
-- Smaller capacity → less ability to learn complex features
-- May underfit on complex datasets
+From the comparison results, MobileNetV2 showed the lowest performance.
 
----
+Possible reasons:
 
-### 3. How did loss values compare across models?
-- Loss started around **~3.1** and decreased to **~2.8**
-- Better models:
-  - Faster loss reduction
-  - Lower validation loss
-- Weaker models:
-  - Higher loss
-  - Slower improvement
+It is designed for lightweight/mobile applications.
+Smaller architecture means fewer learned features.
+It may struggle with complex flower image patterns and textures.
+3. How did the loss values compare across models?
 
-If validation loss stays high while training loss decreases → possible overfitting
+The loss graphs showed that:
 
----
+EfficientNetB3 and ResNet101 had lower validation loss.
+MobileNetV2 had higher loss values and slower improvement.
+Lower loss indicates better learning and prediction capability.
+B. Evaluation Metrics
+4. Why is accuracy not enough?
 
-##  B. Evaluation Metrics
+Accuracy alone does not fully measure model performance because:
 
-### 4. Why is accuracy not enough?
-- Ignores false positives and false negatives
-- Misleading for imbalanced datasets
-- Doesn’t show class-level performance
+It does not show False Positives and False Negatives.
+Some classes may still be misclassified even with high accuracy.
+Precision, Recall, and F1-score provide a more complete evaluation.
+5. Which model had the best F1-score?
 
-Example: A model can be 90% accurate but fail one class completely
+Based on the evaluation tables, EfficientNetB3 achieved the best F1-score.
 
----
+Meaning:
 
-### 5. Which model had the best F1-score?
-**EfficientNetB3** or **ResNet101**
+It balanced Precision and Recall effectively.
+Predictions were more reliable across classes.
+6. Precision vs Recall
 
-**Meaning:**
-- F1-score balances Precision and Recall
-- High F1 = accurate and complete predictions
+The deeper models like EfficientNetB3 and ResNet101 showed a better balance between Precision and Recall.
 
----
+Meanwhile:
 
-### 6. Precision vs Recall
-- Mobile models → higher recall, lower precision
-- Deeper models → better balance
+MobileNetV2 had lower Precision.
+Some predictions were less accurate despite detecting more samples.
+C. Confusion Matrix Analysis
+7. Which classes were frequently misclassified?
 
----
+The confusion matrix suggests that flower classes with:
 
-## C. Confusion Matrix Analysis
+Similar colors
+Similar petal structures
+Similar textures
 
-### 7. Frequently misclassified classes
-- Classes with similar features
-- Similar shapes, colors, textures
+were more likely to be confused by the models.
 
----
+8. What patterns were observed in the confusion matrix?
+Strong diagonal values indicate correct classifications.
+Off-diagonal values show confusion between visually similar flower classes.
+EfficientNetB3 had a cleaner confusion matrix with fewer incorrect predictions.
+D. ROC and AUC
+9. Which model achieved the highest AUC score?
 
-### 8. Observed patterns
-- Strong diagonal = correct predictions
-- Off-diagonal = confusion between similar classes
+Based on the ROC/AUC comparison, EfficientNetB3 achieved the highest AUC score.
 
----
+10. What does AUC mean?
 
-##  D. ROC and AUC
+AUC measures how well the model separates different classes.
 
-### 9. Highest AUC score
-**EfficientNetB3** or **ResNet101**
+Higher AUC means:
 
----
+Better classification performance
+More reliable predictions
+Stronger discrimination between flower categories
+E. Explainability (Grad-CAM)
+11. What did Grad-CAM reveal?
 
-### 10. What AUC means
-- Measures class separation ability
-- Higher AUC = better performance
-- More reliable than accuracy
+Grad-CAM visualizations showed which image regions influenced the model’s decision.
 
----
+The heatmaps revealed that:
 
-##  E. Explainability (Grad-CAM)
+Strong models focused on the flower itself.
+Weak models sometimes focused on unnecessary background regions.
+12. How did the models focus on the image?
+EfficientNetB3 focused clearly on the center flower object.
+ResNet101 also highlighted important flower regions.
+MobileNetV2 showed more scattered attention areas.
+13. Which model produced the best heatmaps?
 
-### 11. What Grad-CAM revealed
-- Shows important image regions
-- Helps understand model decisions
+Based on the Grad-CAM outputs:
 
----
+EfficientNetB3 produced the clearest and most focused heatmaps.
+ResNet101 also performed well but was slightly less focused.
+F. Model Comparison & Improvement
+14. Which model is recommended?
 
-### 12. Model focus
-- Good models → focus on main object
-- Weak models → focus on background
+The recommended model is EfficientNetB3 because it achieved:
 
----
+Highest accuracy
+Best F1-score
+Better Grad-CAM visualization
+Strong overall performance
 
-### 13. Best heatmaps
-- EfficientNetB3
-- ResNet101
+Alternative choices:
 
----
+ResNet101 → high performance but heavier model
+MobileNetV2 → suitable for lightweight/mobile deployment
+15. Suggested improvements
 
-##  F. Model Comparison & Improvement
+Possible improvements include:
 
-### 14. Recommended model
+More data augmentation
+Hyperparameter tuning
+Fine-tuning additional layers
+Increasing training epochs
+Adding regularization techniques like Dropout
+Using more training images
+G. Real-World Application
+16. Possible applications
 
-**Best overall:** EfficientNetB3  
-✔ High accuracy  
-✔ Efficient performance  
+This image classification system can be applied in:
 
-**Alternatives:**
-- ResNet101 → higher accuracy but heavier
-- MobileNetV2 → lightweight for mobile apps
+Agriculture and plant disease detection
+Flower recognition systems
+Mobile AI applications
+Educational tools
+Smart farming technologies
+17. Possible risks
 
----
+Potential risks include:
 
-### 15. Improvements
-- Data augmentation
-- Hyperparameter tuning
-- Fine-tuning layers
-- Regularization (Dropout)
-- More training data
-- Ensemble models
-
----
-
-##  G. Real-World Application
-
-### 16. Applications
-- Medical image classification
-- Surveillance systems
-- Agriculture (disease detection)
-- Mobile AI apps
-
----
-
-### 17. Risks
-- Incorrect predictions
-- Safety issues
-- Bias and unfair outcomes
-- Loss of trust
-
----
-
-### 18. System Integration
-
-**Mobile:**
-- Convert to TensorFlow Lite
-- Integrate in Android (Kotlin)
-
-**Web:**
-- Backend: Flask / Django
-- API for predictions
-- Frontend displays results
-
-**Cloud:**
-- Firebase / AWS / Google Cloud
+Incorrect predictions
+Misclassification of similar flower species
+Reduced reliability in real-world conditions
+Bias from limited training data
+18. How can the model be integrated into a system?
+Mobile Application
+Convert the model to TensorFlow Lite
+Integrate into Android applications
+Web System
+Use Flask or Django backend
+Create API endpoints for prediction
+Display classification results on a website
+Cloud Deployment
+Deploy using Firebase, AWS, or Google Cloud
+Enable real-time image classification services
